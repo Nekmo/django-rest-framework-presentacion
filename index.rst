@@ -163,294 +163,156 @@ Convertir la salida
 .. También hacen lo mismo pero a la inversa: convierten el objeto a una salida compatible, para que nos entendamos, un
    diccionario, y devolverlo al usuario.
 
+Viewsets
+========
+Lógica encargada de procesar las peticiones de la API para **trabajar con los objetos** para:
 
-Convert sections from reStructuredText directly
-===============================================
+* Crearlos
+* Listarlos
+* crearlos
+* Borrarlos...
 
-Adjust section structure
-------------------------
+.. Los viewsets en cambio, son la lógica encargada de devolver tus objetos, a través de la API, crearlos,
+   listarlos, etc.
 
-From:
+Ejemplo viewset
+---------------
+(ejemplo código: https://www.django-rest-framework.org/api-guide/viewsets/ ).
 
-.. code-block:: rest
+.. Por ejemplo, el viewset ``UserViewSet`` tendrá las siguientes acciones para trabajar con los usuarios: listar, crear,
+   obtener y eliminar.
 
-    Title
-    =====
+Parsers y renderers
+-------------------
 
-    First section
-    -------------
+También se encarga de definir:
 
-        Content 1
-        ^^^^^^^^^
+* Los **parsers** (leen e interpretan la petición).
+* Los **renderers** (devuelven al usuario la respuesta).
 
-        Content 2
-        ^^^^^^^^^
+Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
 
-To:
+.. El viewset no sólo se encarga de esto: también define los llamados *parsers* que son las formas de leer la
+   información del usuario para aceptar json, xml, entre otros, y los *renders*, para devolver los datos según pueda
+   quererlo el usuario.
 
-.. code-block:: html
-
-    <section>
-        <h1>Title</h1>
-    </section>
-    <section>
-        <section>
-            <h2>First section</h2>
-        </section>
-        <section>
-            <h3>Content 1</h3>
-        </section>
-        <section>
-            <h3>Content 2</h3>
-        </section>
-    </section>
-
-
-reStructuredText comments are used as speaker notes
----------------------------------------------------
-
-From:
-
-.. code-block:: rest
-
-    .. This is comment in reStructuredText
-
-To:
-
-.. code-block:: html
-
-    <section>
-      <aside class="notes">
-        This is comment in reStructuredText
-      </aside>
-    </section>
-
-code-block as reveal.js code block
-----------------------------------
-
-
-Directive for meta of section
-=============================
-
-Inject background color
+Otras opciones viewsets
 -----------------------
 
-.. revealjs_section::
-    :data-background-color: #009900
+* **Filtrado y paginación** en listados.
+* **Permisos y autenticación**.
+* **Caché respuesta**
+* **Documentación**
+* ... y mucho más.
 
-.. code-block:: rest
+.. No sólo esto, sino que se encargan de muchas cosas más, como filtrado y paginación* en los listados,
+   *permisos y autenticación*, *caché*, *documentación* y mucho más. Vale, y hasta aquí la mitad de la presentación.
 
-    .. revealjs_section::
-        :data-background-color: #009900
+Mitad presentación
+==================
+(diapositiva de aplausos)
 
-Inject background image
------------------------
+.. Lo que queda por suerte ya es más fácil. Pasemos a los routers.
 
-.. revealjs_section::
-    :data-background-image: _static/icon-attakei.jpg
-    :data-background-size: contain
+Routers
+=======
 
-.. code-block:: rest
+.. Los *routers* son la parte más sencilla de explicar: se encargan de registrar los viewsets y ponerles un nombre,
+   para que sea posible acceder a ellos por una url. ¿No es genial acabar con la parte más fácil?
 
-    .. revealjs_section::
-        :data-background-image: _static/icon-attakei.jpg
-        :data-background-size: contain
+Urls
+----
 
-Inject background video
------------------------
+.. Después sólo queda registrarlos en el ``urls.py`` de Django, igual que con cualquier otra app. Así de fácil.
 
-.. revealjs_section::
-    :data-background-video: https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm
+En resumen
+==========
 
-.. code-block:: rest
+* **Serializers**: representan e interpretan los datos.
+* **Viewsets**: gestionan las peticiones y devuelven la respuesta.
+* **Routers**: corresponde a las urls que se utilizarán
 
-    .. revealjs_section::
-        :data-background-video: https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm
+.. Así pues, en resumen tenemos: serializers que representan e interpretan los datos, viewsets que gestionan las
+   peticiones, y routers que corresponde a las urls que se utilizarán.
 
-Inject background iframe
-------------------------
+¿Y no podríamos reducirlo?
+==========================
+(esquema serializers, viewsets, routers)
 
-.. revealjs_section::
-    :data-background-iframe: https://slides.com
-    :data-background-interactive:
+.. Pero claro, alguno pensará... ¡Esas son muchas clases y muchas cosas! ¿No podría estar todo junto? A mí también me
+   lo pareció al principio. Por ejemplo, ¿por qué no juntar los serializers y los viewsets?
 
-.. code-block:: rest
+Heredar serializers
+===================
 
-    .. revealjs_section::
-        :data-background-iframe: https://slides.com
-        :data-background-interactive:
+.. El motivo por el que no se puede , es que puedes heredar de tu serializer para crear uno en mas detalle.
 
+Condicionar serializer
+----------------------
 
-Transition settings(before)
----------------------------
+.. Y devolver un serializer u otro dependiendo de si lo pones en un listado o pides sólo uno, por ejemplo. Así
+   ahorras datos. ¿No es genial?
 
-.. revealjs_section::
-    :data-transition: none
+Anidar serializers
+------------------
 
-.. code-block:: rest
+.. Y por si fuera poco, puedes reutilizar tus serializers para usarlos en otros serializers, anidados. Esto es
+   lo que se llama *nested serializers*
 
-    .. revealjs_section::
-        :data-transition: none
+Otros módulos
+=============
 
-Transition settings(after)
---------------------------
+* `djoser <https://github.com/sunscrapers/djoser>`_ (Registro y autenticación usuarios).
+* `django-oauth-toolkit <https://github.com/jazzband/django-oauth-toolkit>`_ (OAuth2).
+* `drf-yasg <https://github.com/axnsan12/drf-yasg/>`_ (Swagger).
+* `drf-nested-routers <https://github.com/alanjds/drf-nested-routers>`_ (Routers anidados)
+* `rest-pandas <https://github.com/wq/django-rest-pandas>`_ (Excel, CSV y SVG renderers).
+* `drf-extensions <https://github.com/chibisov/drf-extensions>`_ (extensiones varias).
 
-.. revealjs_section::
-    :data-transition: fade
+.. La gente de Django Rest Framework ha pensado en muchas de estas cosas, pero por si fuera poco, cuentas con cientos
+   de módulos de terceros, como por ejemplo (listar ejemplos).
 
-.. code-block:: rest
+Demo
+====
 
-    .. revealjs_section::
-        :data-transition: fade
+.. Aunque hay módulos para swagger, documentación adicional y más, Django Rest Framework ya incluye una interfaz
+   navegable muy avanzada y fácil de usar. Vamos a ver un ejemplo con, por ejemplo, ...
 
-Background image transition
----------------------------
+Pikachu
+-------
+(diapositiva pikachu).
 
-.. revealjs_section::
-    :data-background-image: _static/icon-attakei.jpg
-    :data-background-size: contain
-    :data-background-transition: zoom
+.. Pokémon. Porque, ¿por qué no?
 
-.. code-block:: rest
-
-    .. revealjs_section::
-        :data-background-image: _static/icon-attakei.jpg
-        :data-background-size: contain
-        :data-background-transition: zoom
-
-
-Keep title without duplicated written
--------------------------------------
-
-First section
-
-.. revealjs_break::
-
-Second section
-
-.. code-block:: rest
-
-    .. revealjs_break::
-
-
-.. revealjs_break::
-    :notitle:
-
-Third section.
-
-You can hide section title
-
-.. code-block:: rest
-
-    .. revealjs_break::
-        :notitle:
-
-Support features
+¡Muchas gracias!
 ================
 
-Fragments
+.. Y hasta aquí la presentación. Espero que no se haya alargado de más.
+
+Referencias
+-----------
+
+* `Django Tutorial <https://docs.djangoproject.com/en/3.1/intro/tutorial01/>`_.
+* `Django Rest Framework Tutorial <https://www.django-rest-framework.org/tutorial/quickstart/>`_.
+* `Awesome Django Rest Framework <https://github.com/nioperas06/awesome-django-rest-framework>`_.
+
+.. Tenéis enlaces a Django, Django Rest Framework y un listado de módulos geniales para este último.
+
+¿Y la presentación?
+-------------------
+Vuelve a verla, prueba la demo y mira el código fuente en:
+
+github:Nekmo/django-rest-framework-presentacion <https://github.com/Nekmo/django-rest-framework-presentacion>`_
+
+.. Además de a la presentación, por si queréis volver a verla.
+
+Contactar
 ---------
 
-This is support fragment with groups.
+**Sitio web:** `contacto@nekmo.com <mailto:contacto@nekmo.com>`_
+**Email:** `contacto@nekmo.com <mailto:contacto@nekmo.com>`_
+**Twitter:** `@nekmocom <https://twitter.com/nekmocom>`_
+**Telegram:** `@nekmo <https://t.me/nekmo>`_
+**Jabber:** `nekmo@nekmo.org <xmpp://nekmo@nekmo.org>`_
 
-.. revealjs_fragments::
-
-   * First
-   * Second
-   * Third
-
-Plugins
--------
-
-bundled plugins can use just write ``conf.py``
-
-.. code-block:: python
-
-    revealjs_script_plugins = [
-        {
-            "name": "RevealNotes",
-            "src": "revealjs4/plugin/notes/notes.js",
-        },
-    ]
-
-This is used `RevealNotes` plugin, Please press `S` key to try it!
-
-Usage
-=====
-
-Installation
-------------
-
-You can install from PyPI.
-
-.. code-block:: bash
-
-    $ pip install sphinx-revealjs
-
-Configure
----------
-
-Edit `conf.py` to use this extension
-
-.. code-block:: python
-
-    extensions = [
-        "sphinx_revealjs",
-    ]
-
-Write source
-------------
-
-Write plain reStructuredText
-
-.. code-block:: rest
-
-    My Reveal.js presentation
-    =========================
-
-    Agenda
-    ------
-
-    * Author
-    * Feature
-
-
-    Author: Who am I
-    ================
-
-    Own self promotion
-
-    Content
-    =======
-
-Build
------
-
-This extension has custom builder name ``revealjs`` .
-If you make docs as Reveal.js presentation, you call ``make revealjs``.
-
-.. code-block:: bash
-
-    $ make revealjs
-
-This presentation is made from `source <https://github.com/attakei/sphinx-revealjs/blob/master/demo/revealjs4/index.rst>`_.
-
-Other examples
-==============
-
-Within this pages
------------------
-
-* :doc:`example-background-only-section`
-
-Enjoy writing reST as presentation
-==================================
-
-Please star!
-
-.. raw:: html
-
-    <!-- Place this tag where you want the button to render. -->
-    <a class="github-button" href="https://github.com/attakei/sphinx-revealjs" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star attakei/sphinx-revealjs on GitHub">Star</a>
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+.. Finalmente, también tenéis
