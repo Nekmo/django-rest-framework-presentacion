@@ -24,8 +24,6 @@ antorchas Simpsons).
 Django Rest Framework aprovecha todo lo bueno de Django, y lo complementa. Si Django es un pastel (diapositiva pastel -
 Django Rest Framework) es su guinda (diapositiva pastel con guida). ¿Y nadie quiere una guinda sin pastel, verdad?
 
-Django Rest Framework me gusta, porque a diferencia de otros módulos que hacen lo mismo, entiende perfectamente la
-filosofía de Django, y ello se ve en su arquitectura (diapositiva: serializers, viewsets, routers).
 
 Vale, empecemos por los serializers. ¿Y qué hacen los serializers? -- "Los serializers, serializan -- J. Oyague, 2021"
 (diapositiva). Vale, ya enserio.

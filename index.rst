@@ -3,10 +3,6 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-===========================================
-Construyendo APIs con Django Rest Framework
-===========================================
-
 .. This toctree is only to link examples.
 
 .. toctree::
@@ -15,21 +11,158 @@ Construyendo APIs con Django Rest Framework
 
    *
 
-Overview
+.. _intro:
+
+===============================================
+Construyendo APIs con **Django Rest Framework**
+===============================================
+
+Sobre mí
 ========
 
-What is this?
--------------
+.. Buenas, soy Juan José Oyague, más conocido en las redes como Nekmo; y llevo media vida programando en Python,
+   usando Django ya desde su versión 1.1. Así que no os puedo engañar...
 
-Sphinx extension to build Revealjs presentation
+**Nekmo**
 
-Features
+*Django desde versión 1.1 (2009)*
+
+.. image:: images/cara.svg
+   :width: 200px
+
+Django + Django Rest Framework
+==============================
+
+.. ... Me gusta Django, y Django Rest Framework (diapositiva corazón). Y espero conseguir haceros llegar un poco de mi
+   pasión por estos dos frameworks, y de los motivos por los que llevo usándolos tanto tiempo. Vale, pero
+   antes de llegar a mí Django Rest Framework, llego...
+
+Django
+======
+
+.. Django. ¿Y qué es exactamente este framework?
+
+Qué es
+------
+
+* Framework web
+* Desarrollo rápido en Python
+* Miles de módulos
+* Muy escalable
+* Gran soporte
+
+.. Aquí no me puedo parar mucho, pero en resumen, Django es un framework web para el rápido desarrollo en Python, con
+   miles de módulos, muy estable y con gran soporte. Seguramente, el más conocido y usado en Python.
+
+
+Baterías incluidas
+------------------
+
+.. Y al igual que Python, tiene baterías incluidas para todo.
+
+.. image:: images/batteries-included.*
+   :width: 100%
+
+Qué incluye
+-----------
+
+* ORM para base de datos
+* Administración de sesiones
+* Control de permisos
+* Gestión de urls
+* Middleware
+* Caché
+* envío de correos...
+* Pero claro, no API Rest.
+
+Django Rest Framework
+=====================
+
+.. ¿Recordáis que hemos dicho que tiene módulos para todo? Pues Django Rest Framework es uno de esos módulos.
+   Se instala en prácticamente en 3 o 4 pasos, y listo para funcionar.
+
+Framework para desarrollar APIs REST
+------------------------------------
+
+.. Pero espera... Django Rest Framework es un framework... ¿Y Django también es un framework?
+
+
+Meta framework
+--------------
+
+(diapositiva meme meta).
+
+.. Sí, Django Rest Framework es un framework dentro de otro framework web. Pero aún no saquéis las antorchas.
+
+
+Antorchas
+---------
+
+(diapositiva antorchas Simpsons).
+
+Django Rest Framework complementa
+---------------------------------
+
+.. Django Rest Framework aprovecha todo lo bueno de Django, y lo complementa. Si Django es un pastel
+
+Pastel 1
 --------
+(diapositiva pastel)
 
-.. This is reST comment. Render into speaker note section
 
-* Convert sections from reStructuredText directly
-* Select theme from default themes
+.. Django Rest Framework es su guinda
+
+Pastel 2
+--------
+(diapositiva pastel con guida).
+
+.. ¿Y nadie quiere una guinda sin pastel, verdad?
+
+Ejemplo web
+===========
+
+.. Además, nos construye una API REST muy vistosa y navegable y que nos mostrará el JSON resaltado de nuestros objetos
+   de la base de datos.
+
+Formulario
+----------
+
+.. No sólo eso, sino que nos construtye formularios para crear nuevos objetos. ¿Pero cómo funciona todo esto?
+
+
+Estructura
+==========
+(diapositiva: serializers, viewsets, routers).
+
+.. Si Django Rest Framework me gusta, no es sólo por sus opciones o su modo web, sino porque a diferencia de otros
+   módulos que hacen lo mismo, entiende perfectamente la filosofía de Django, y ello se ve en su estructura base.
+
+Serializers
+===========
+
+**¿Qué son?**
+
+.. Vale, empecemos por los serializers. ¿Y qué hacen los serializers?
+
+Los serializers, serializan
+---------------------------
+
+*J. Oyague, 2021.*
+
+.. Los serializers, serializan. Juan José Oyague, 2021. Vale, ahora en serio.
+
+Convertir la entrada
+--------------------
+
+.. Los serializers, son los responsables de convertir la entrada de datos, vamos, lo que mete el usuario a través de la
+   API, en un objeto en Python, que normalmente servirá para crear o actualizar un objeto en la base de datos
+
+Convertir la salida
+-------------------
+
+.. También hacen lo mismo pero a la inversa: convierten el objeto a una salida compatible, para que nos entendamos, un
+   diccionario, y devolverlo al usuario.
+
 
 Convert sections from reStructuredText directly
 ===============================================
