@@ -17,6 +17,9 @@
 Construyendo APIs con **Django Rest Framework**
 ===============================================
 
+.. image:: images/drf_logo.*
+
+
 Sobre mí
 ========
 
@@ -302,7 +305,7 @@ Referencias
 -------------------
 Vuelve a verla, prueba la demo y mira el código fuente en:
 
-github:Nekmo/django-rest-framework-presentacion <https://github.com/Nekmo/django-rest-framework-presentacion>`_
+`github:Nekmo/django-rest-framework-presentacion <https://github.com/Nekmo/django-rest-framework-presentacion>`_
 
 .. Además de a la presentación, por si queréis volver a verla.
 
@@ -315,4 +318,5 @@ Contactar
 **Telegram:** `@nekmo <https://t.me/nekmo>`_
 **Jabber:** `nekmo@nekmo.org <xmpp://nekmo@nekmo.org>`_
 
-.. Finalmente, también tenéis
+.. Finalmente, también tenéis mi sitio web (ejem ejem spam) en esta diapositiva. Y también mi email. Y Twitter.
+   Aunque apenas escriba en Twitter. Y ante todo, ¡muchas gracias a todos!
