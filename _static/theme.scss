@@ -31,6 +31,7 @@
 
 // store colors in variables
 $hotPink: #A30000;
+$djangoColor: #0C4B33;
 $sunshine: $hotPink;
 // the color of the thick border surrounding the presention
 $borderColor: $hotPink;
@@ -163,6 +164,53 @@ body::before {
 
     strong {
         display: none;
+    }
+}
+
+#sobre-mi {
+    h2 {
+        width: 40%;
+        font-size: 2.5em;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 100px;
+        text-align: right;
+        line-height: 0.5em;;
+
+        strong {
+            font-size: 0.3em;
+            color: $linkColor;
+        }
+    }
+    table {
+        width: 40%;
+        display: inline-block;
+    }
+}
+
+#django-django-rest-framework {
+    height: 100%;
+    width: 100%;
+    background: url(./heart.svg) center no-repeat;
+    background-size: contain;
+
+    h2 {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        font-size: 2.3em;
+        margin-top: -70px;
+        margin-left: 120px;
+        margin-right: 120px;
+    }
+
+    strong {
+        color: $djangoColor;
+    }
+    em {
+        color: #fff;
     }
 }
 

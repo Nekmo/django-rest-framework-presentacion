@@ -20,21 +20,26 @@ Construyendo APIs con **Django Rest Framework**
 .. image:: images/drf_logo.*
 
 
-Sobre mí
-========
+.. _sobre-mi:
+
+Sobre mí **Nekmo**
+==================
+
++-----------------------------------+
+|                                   |
+| .. image:: images/cara.svg        |
+|   :width: 200px                   |
+|                                   |
+| *Django desde versión 1.1 (2009)* |
+|                                   |
++-----------------------------------+
 
 .. Buenas, soy Juan José Oyague, más conocido en las redes como Nekmo; y llevo media vida programando en Python,
    usando Django ya desde su versión 1.1. Así que no os puedo engañar...
 
-**Nekmo**
 
-*Django desde versión 1.1 (2009)*
-
-.. image:: images/cara.svg
-   :width: 200px
-
-Django + Django Rest Framework
-==============================
+**Django** + *Django Rest Framework*
+====================================
 
 .. ... Me gusta Django, y Django Rest Framework (diapositiva corazón). Y espero conseguir haceros llegar un poco de mi
    pasión por estos dos frameworks, y de los motivos por los que llevo usándolos tanto tiempo. Vale, pero
