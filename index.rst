@@ -59,11 +59,13 @@ Django
 Qué es
 ------
 
-* **Framework web**.
-* **Desarrollo rápido** en **Python**.
-* Miles de **módulos**.
-* Muy **escalable**.
-* Gran **soporte**.
+.. revealjs_fragments::
+
+    * **Framework web**.
+    * **Desarrollo rápido** en **Python**.
+    * Miles de **módulos**.
+    * Muy **escalable**.
+    * Gran **soporte**.
 
 .. revealjs_section::
     :data-background-color: #0c4b33
@@ -118,7 +120,10 @@ Framework para desarrollar **APIs REST**
 Meta framework
 --------------
 
-(diapositiva meme meta).
+.. image:: images/meta.*
+
+.. revealjs_section::
+    :data-background-color: #000000
 
 .. Sí, Django Rest Framework es un framework dentro de otro framework web. Pero aún no saquéis las antorchas.
 
@@ -131,6 +136,7 @@ Antorchas
 
 .. revealjs_section::
     :data-background-color: #000000
+    :data-transition: convex-in slide-out
 
 
 **Django Rest Framework** *complementa*
@@ -145,7 +151,7 @@ Pastel 1
 
 .. revealjs_section::
     :data-background-color: #badeba
-    :data-transition: fade
+    :data-transition: slide-in fade-out
 
 .. Django Rest Framework es su guinda
 
@@ -156,12 +162,16 @@ Pastel 2
 
 .. revealjs_section::
     :data-background-color: #badeba
-    :data-transition: zoom
+    :data-transition: fade
 
 .. ¿Y nadie quiere una guinda sin pastel, verdad?
 
 Ejemplo web
 ===========
+
+.. revealjs_section::
+   :data-transition: concave
+
 
 .. Además, nos construye una API REST muy vistosa y navegable y que nos mostrará el JSON resaltado de nuestros objetos
    de la base de datos.
@@ -197,11 +207,17 @@ Los serializers, serializan
 Convertir la entrada
 --------------------
 
+.. revealjs_section::
+   :data-transition: fade-in zoom-out
+
 .. Los serializers, son los responsables de convertir la entrada de datos, vamos, lo que mete el usuario a través de la
    API, en un objeto en Python, que normalmente servirá para crear o actualizar un objeto en la base de datos
 
 Convertir la salida
 -------------------
+
+.. revealjs_section::
+   :data-transition: zoom-in fade-out
 
 .. También hacen lo mismo pero a la inversa: convierten el objeto a una salida compatible, para que nos entendamos, un
    diccionario, y devolverlo al usuario.
