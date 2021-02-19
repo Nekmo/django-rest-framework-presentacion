@@ -1,0 +1,11 @@
+requests
+
+Django
+djangorestframework
+django-filter
+drf-writable-nested
+django-crispy-forms
+djangorestframework-yaml
+drf-renderer-xlsx
+djangorestframework-csv
+drf-yasg
