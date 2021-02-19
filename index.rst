@@ -48,16 +48,25 @@ Sobre mí **Nekmo**
 Django
 ======
 
+.. image:: images/django-white-logo.svg
+   :width: 100%
+
+.. revealjs_section::
+    :data-background-color: #0c4b33
+
 .. Django. ¿Y qué es exactamente este framework?
 
 Qué es
 ------
 
-* Framework web
-* Desarrollo rápido en Python
-* Miles de módulos
-* Muy escalable
-* Gran soporte
+* **Framework web**.
+* **Desarrollo rápido** en **Python**.
+* Miles de **módulos**.
+* Muy **escalable**.
+* Gran **soporte**.
+
+.. revealjs_section::
+    :data-background-color: #0c4b33
 
 .. Aquí no me puedo parar mucho, pero en resumen, Django es un framework web para el rápido desarrollo en Python, con
    miles de módulos, muy estable y con gran soporte. Seguramente, el más conocido y usado en Python.
@@ -66,31 +75,39 @@ Qué es
 Baterías incluidas
 ------------------
 
-.. Y al igual que Python, tiene baterías incluidas para todo.
+.. revealjs_section::
+    :data-background-color: #0c4b33
 
 .. image:: images/batteries-included.*
    :width: 100%
 
+.. Y al igual que Python, tiene baterías incluidas para todo.
+
 Qué incluye
 -----------
 
-* ORM para base de datos
-* Administración de sesiones
-* Control de permisos
-* Gestión de urls
-* Middleware
-* Caché
-* envío de correos...
-* Pero claro, no API Rest.
+.. revealjs_section::
+    :data-background-color: #0c4b33
+
+* **ORM** para base de datos.
+* Administración de **sesiones**.
+* Control de **permisos**
+* Gestión de **urls**.
+* **Middleware**.
+* **Caché**.
+* envío de **correos**...
+* Pero claro, **no API Rest**.
 
 Django Rest Framework
 =====================
 
+.. image:: images/drf_logo.*
+
 .. ¿Recordáis que hemos dicho que tiene módulos para todo? Pues Django Rest Framework es uno de esos módulos.
    Se instala en prácticamente en 3 o 4 pasos, y listo para funcionar.
 
-Framework para desarrollar APIs REST
-------------------------------------
+Framework para desarrollar **APIs REST**
+----------------------------------------
 
 .. Pero espera... Django Rest Framework es un framework... ¿Y Django también es un framework?
 
@@ -106,23 +123,37 @@ Meta framework
 Antorchas
 ---------
 
-(diapositiva antorchas Simpsons).
+.. image:: images/mob-torch.gif
+   :width: 150%
 
-Django Rest Framework complementa
----------------------------------
+.. revealjs_section::
+    :data-background-color: #000000
+
+
+**Django Rest Framework** *complementa*
+---------------------------------------
 
 .. Django Rest Framework aprovecha todo lo bueno de Django, y lo complementa. Si Django es un pastel
 
 Pastel 1
 --------
-(diapositiva pastel)
 
+.. image:: images/guinda-sin.jpg
+
+.. revealjs_section::
+    :data-background-color: #badeba
+    :data-transition: fade
 
 .. Django Rest Framework es su guinda
 
 Pastel 2
 --------
-(diapositiva pastel con guida).
+
+.. image:: images/guinda.jpg
+
+.. revealjs_section::
+    :data-background-color: #badeba
+    :data-transition: zoom
 
 .. ¿Y nadie quiere una guinda sin pastel, verdad?
 
@@ -135,12 +166,13 @@ Ejemplo web
 Formulario
 ----------
 
-.. No sólo eso, sino que nos construtye formularios para crear nuevos objetos. ¿Pero cómo funciona todo esto?
+.. No sólo eso, sino que nos construye formularios para crear nuevos objetos. ¿Pero cómo funciona todo esto?
 
 
 Estructura
 ==========
-(diapositiva: serializers, viewsets, routers).
+
+.. image:: images/esquema-drf.png
 
 .. Si Django Rest Framework me gusta, no es sólo por sus opciones o su modo web, sino porque a diferencia de otros
    módulos que hacen lo mismo, entiende perfectamente la filosofía de Django, y ello se ve en su estructura base.
@@ -155,7 +187,7 @@ Serializers
 Los serializers, serializan
 ---------------------------
 
-*J. Oyague, 2021.*
+*Nekmo, 2021.*
 
 .. Los serializers, serializan. Juan José Oyague, 2021. Vale, ahora en serio.
 
@@ -317,11 +349,11 @@ Vuelve a verla, prueba la demo y mira el código fuente en:
 Contactar
 ---------
 
-**Sitio web:** `contacto@nekmo.com <mailto:contacto@nekmo.com>`_
-**Email:** `contacto@nekmo.com <mailto:contacto@nekmo.com>`_
-**Twitter:** `@nekmocom <https://twitter.com/nekmocom>`_
-**Telegram:** `@nekmo <https://t.me/nekmo>`_
-**Jabber:** `nekmo@nekmo.org <xmpp://nekmo@nekmo.org>`_
+* **Sitio web:** `contacto@nekmo.com <mailto:contacto@nekmo.com>`_
+* **Email:** `contacto@nekmo.com <mailto:contacto@nekmo.com>`_
+* **Twitter:** `@nekmocom <https://twitter.com/nekmocom>`_
+* **Telegram:** `@nekmo <https://t.me/nekmo>`_
+* **Jabber:** `nekmo@nekmo.org <xmpp://nekmo@nekmo.org>`_
 
 .. Finalmente, también tenéis mi sitio web (ejem ejem spam) en esta diapositiva. Y también mi email. Y Twitter.
    Aunque apenas escriba en Twitter. Y ante todo, ¡muchas gracias a todos!

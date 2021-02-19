@@ -29,6 +29,9 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300,700);
 @import url(https://fonts.googleapis.com/css?family=Lora:700);
 
+@import url(https://fonts.googleapis.com/css2?family=Allura&display=swap);
+
+
 // store colors in variables
 $hotPink: #A30000;
 $djangoColor: #0C4B33;
@@ -156,6 +159,28 @@ body::before {
   color: darken($sunshine, 25%);
 }
 
+ul li {
+    line-height: 2em;
+}
+
+.has-dark-background {
+    h1, h2, h3 {
+        color: white;
+    }
+
+    ul, p {
+        color: #dedede;
+    }
+
+    strong {
+        color: white;
+    }
+}
+
+.reveal section img {
+    border: 0;
+    box-shadow: 0 0;
+}
 
 #intro {
     h1 {
@@ -214,7 +239,51 @@ body::before {
     }
 }
 
-.reveal section img {
-    border: 0;
-    box-shadow: 0 0;
+#django, #django-rest-framework, #antorchas, #pastel-1, #pastel-2, #estructura {
+    h1, h2, h3 {
+        display: none;
+    }
+
+    img {
+        background: none;
+    }
+}
+
+#que-es {
+    font-size: 1.5em;
+}
+
+#que-incluye {
+    font-size: 1.2em;
+}
+
+#que-incluye {
+    ul {
+      margin-left: 0;
+      columns: 2;
+      -webkit-columns: 2;
+      -moz-columns: 2;
+    }
+}
+
+#framework-para-desarrollar-apis-rest, #django-rest-framework-complementa {
+    strong {
+        color: $linkColor;
+    }
+}
+
+#serializers {
+    strong {
+        color: $linkColor;
+        font-size: 2em;
+    }
+}
+
+#los-serializers-serializan {
+    h3 {
+        text-transform: none;
+        font-style: italic;
+        font-size: 3.5em;
+        font-family: 'Allura', cursive;
+    }
 }
