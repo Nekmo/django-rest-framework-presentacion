@@ -89,14 +89,17 @@ Qué incluye
 .. revealjs_section::
     :data-background-color: #0c4b33
 
-* **ORM** para base de datos.
-* Administración de **sesiones**.
-* Control de **permisos**
-* Gestión de **urls**.
-* **Middleware**.
-* **Caché**.
-* envío de **correos**...
-* Pero claro, **no API Rest**.
+
+.. revealjs_fragments::
+
+    * **ORM** para base de datos.
+    * Administración de **sesiones**.
+    * Control de **permisos**
+    * Gestión de **urls**.
+    * **Middleware**.
+    * **Caché**.
+    * envío de **correos**...
+    * Pero claro, **no API Rest**.
 
 Django Rest Framework
 =====================
@@ -207,10 +210,12 @@ Viewsets
 ========
 Lógica encargada de procesar las peticiones de la API para **trabajar con los objetos** para:
 
-* Crearlos
-* Listarlos
-* crearlos
-* Borrarlos...
+.. revealjs_fragments::
+
+    * **Crearlos**
+    * **Listarlos**
+    * **Actualizarlos**
+    * **Eliminarlos**...
 
 .. Los viewsets en cambio, son la lógica encargada de devolver tus objetos, a través de la API, crearlos,
    listarlos, etc.
@@ -227,8 +232,8 @@ Parsers y renderers
 
 También se encarga de definir:
 
-* Los **parsers** (leen e interpretan la petición).
-* Los **renderers** (devuelven al usuario la respuesta).
+* Los **parsers** *(leen e interpretan la petición)*.
+* Los **renderers** *(devuelven al usuario la respuesta)*.
 
 Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
 
@@ -239,18 +244,24 @@ Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
 Otras opciones viewsets
 -----------------------
 
-* **Filtrado y paginación** en listados.
-* **Permisos y autenticación**.
-* **Caché respuesta**
-* **Documentación**
-* ... y mucho más.
+.. revealjs_fragments::
+
+    * **Filtrado y paginación** en listados.
+    * **Permisos y autenticación**.
+    * **Caché respuesta**.
+    * **Documentación**.
+    * ... y mucho más.
 
 .. No sólo esto, sino que se encargan de muchas cosas más, como filtrado y paginación* en los listados,
    *permisos y autenticación*, *caché*, *documentación* y mucho más. Vale, y hasta aquí la mitad de la presentación.
 
 Mitad presentación
 ==================
-(diapositiva de aplausos)
+
+.. revealjs_section::
+    :data-background-color: #000000
+    :data-background-image: _static/applause.gif
+
 
 .. Lo que queda por suerte ya es más fácil. Pasemos a los routers.
 
@@ -268,16 +279,20 @@ Urls
 En resumen
 ==========
 
-* **Serializers**: representan e interpretan los datos.
-* **Viewsets**: gestionan las peticiones y devuelven la respuesta.
-* **Routers**: corresponde a las urls que se utilizarán
+.. revealjs_fragments::
+
+    * **Serializers**: representan e interpretan los datos.
+    * **Viewsets**: gestionan las peticiones y devuelven la respuesta.
+    * **Routers**: corresponde a las urls que se utilizarán
 
 .. Así pues, en resumen tenemos: serializers que representan e interpretan los datos, viewsets que gestionan las
    peticiones, y routers que corresponde a las urls que se utilizarán.
 
 ¿Y no podríamos reducirlo?
 ==========================
-(esquema serializers, viewsets, routers)
+
+.. image:: images/esquema-drf.png
+    :width: 100%
 
 .. Pero claro, alguno pensará... ¡Esas son muchas clases y muchas cosas! ¿No podría estar todo junto? A mí también me
    lo pareció al principio. Por ejemplo, ¿por qué no juntar los serializers y los viewsets?
@@ -315,28 +330,35 @@ Otros módulos
 Demo
 ====
 
+.. revealjs_section::
+    :data-background-color: #000000
+    :data-background-image: _static/demo.gif
+
+
 .. Aunque hay módulos para swagger, documentación adicional y más, Django Rest Framework ya incluye una interfaz
    navegable muy avanzada y fácil de usar. Vamos a ver un ejemplo con, por ejemplo, ...
 
 Pikachu
 -------
-(diapositiva pikachu).
+
+.. revealjs_section::
+    :data-background-color: #000000
+    :data-background-image: _static/pikachu.jpg
+
 
 .. Pokémon. Porque, ¿por qué no?
 
 ¡Muchas gracias!
 ================
 
-.. Y hasta aquí la presentación. Espero que no se haya alargado de más.
-
-Referencias
------------
+**Referencias**
 
 * `Django Tutorial <https://docs.djangoproject.com/en/3.1/intro/tutorial01/>`_.
 * `Django Rest Framework Tutorial <https://www.django-rest-framework.org/tutorial/quickstart/>`_.
 * `Awesome Django Rest Framework <https://github.com/nioperas06/awesome-django-rest-framework>`_.
 
-.. Tenéis enlaces a Django, Django Rest Framework y un listado de módulos geniales para este último.
+.. Y hasta aquí la presentación. Espero que no se haya alargado de más. Tenéis enlaces a Django, Django Rest
+   Framework y un listado de módulos geniales para este último.
 
 ¿Y la presentación?
 -------------------
@@ -354,6 +376,12 @@ Contactar
 * **Twitter:** `@nekmocom <https://twitter.com/nekmocom>`_
 * **Telegram:** `@nekmo <https://t.me/nekmo>`_
 * **Jabber:** `nekmo@nekmo.org <xmpp://nekmo@nekmo.org>`_
+
+|
+|
+
+.. image:: images/hispasec-logo.png
+    :width: 40%
 
 .. Finalmente, también tenéis mi sitio web (ejem ejem spam) en esta diapositiva. Y también mi email. Y Twitter.
    Aunque apenas escriba en Twitter. Y ante todo, ¡muchas gracias a todos!

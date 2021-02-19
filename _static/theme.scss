@@ -239,7 +239,7 @@ ul li {
     }
 }
 
-#django, #django-rest-framework, #antorchas, #pastel-1, #pastel-2, #estructura {
+#django, #django-rest-framework, #antorchas, #pastel-1, #pastel-2, #estructura, #pikachu {
     h1, h2, h3 {
         display: none;
     }
@@ -257,7 +257,7 @@ ul li {
     font-size: 1.2em;
 }
 
-#que-incluye {
+#que-incluye, #viewsets {
     ul {
       margin-left: 0;
       columns: 2;
@@ -266,7 +266,8 @@ ul li {
     }
 }
 
-#framework-para-desarrollar-apis-rest, #django-rest-framework-complementa {
+#framework-para-desarrollar-apis-rest, #django-rest-framework-complementa, #viewsets, #parsers-y-renderers,
+#otras-opciones-viewsets, #en-resumen {
     strong {
         color: $linkColor;
     }
@@ -285,5 +286,24 @@ ul li {
         font-style: italic;
         font-size: 3.5em;
         font-family: 'Allura', cursive;
+    }
+}
+
+#mitad-presentacion, #demo {
+    h2 {
+        font-weight: bold;
+        font-size: 4em;
+        text-shadow: #000000 1px 0 10px;
+    }
+}
+
+
+#y-no-podriamos-reducirlo {
+    font-size: 0.6em;
+}
+
+#otros-modulos {
+    a {
+        font-weight: bold;
     }
 }
