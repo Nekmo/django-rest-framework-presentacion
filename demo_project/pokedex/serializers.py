@@ -16,11 +16,11 @@ class DemoSerializerMixin(object):
         return fields
 
 
-class SimpleSpecieSerializer(serializers.HyperlinkedModelSerializer):
+class SimpleSpecieSerializer(DemoSerializerMixin, serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Specie
-        fields = ('identifier', 'color', 'gender_rate', 'has_gender_differences')
+        exclude = ('growth_rate', 'shape', 'habitat', 'generation', 'evolves_from_specie')
 
 
 class RegionSerializer(DemoSerializerMixin, serializers.HyperlinkedModelSerializer):

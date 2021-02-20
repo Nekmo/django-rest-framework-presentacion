@@ -23,12 +23,12 @@ router.register(r'regions', viewsets.RegionViewSet)
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Snippets API",
+      title="Pokédex API",
       default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
-      license=openapi.License(name="BSD License"),
+      description="Demo project",
+      terms_of_service="https://github.com/Nekmo/django-rest-framework-presentacion",
+      contact=openapi.Contact(email="contacto@nekmo.com"),
+      license=openapi.License(name="MIT License"),
    ),
    public=True,
    permission_classes=(permissions.AllowAny,),

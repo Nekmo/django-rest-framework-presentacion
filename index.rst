@@ -383,11 +383,37 @@ Vamos terminando
 Routers
 =======
 
+.. code-block:: python
+
+    # routers.py
+    # ----------
+
+    router = DefaultRouter()
+    router.register(r'pokemon', viewsets.PokemonViewSet)
+    router.register(r'species', viewsets.SpecieViewSet)
+    router.register(r'growth_rates', viewsets.GrowthRateViewSet)
+    router.register(r'shapes', viewsets.ShapeViewSet)
+    router.register(r'habitats', viewsets.HabitatViewSet)
+    router.register(r'generations', viewsets.GenerationViewSet)
+    router.register(r'regions', viewsets.RegionViewSet)
+
+
 .. Los *routers* son la parte más sencilla de explicar: se encargan de registrar los viewsets y ponerles un nombre,
    para que sea posible acceder a ellos por una url. ¿No es genial acabar con la parte más fácil?
 
 Urls
 ----
+
+.. code-block:: python
+
+    # urls.py
+    # -------
+
+    urlpatterns = [
+        url(r'^', include(router.urls)),
+        path('docs/', include_docs_urls(title='Pokédex'))
+    ]
+
 
 .. Después sólo queda registrarlos en el ``urls.py`` de Django, igual que con cualquier otra app. Así de fácil.
 
@@ -415,16 +441,62 @@ En resumen
 Heredar serializers
 ===================
 
+.. code-block:: python
+
+    class SimpleSpecieSerializer(serializers.HyperlinkedModelSerializer):
+
+        class Meta:
+            model = Specie
+            exclude = ('growth_rate', 'shape', 'habitat', 'generation')
+
+
+    class SpecieSerializer(SimpleSpecieSerializer):
+
+        class Meta(SimpleSpecieSerializer.Meta):
+            exclude = ()
+
+
 .. El motivo por el que no se puede , es que puedes heredar de tu serializer para crear uno en mas detalle.
 
 Condicionar serializer
 ----------------------
+
+.. code-block:: python
+
+    class SpecieViewSet(viewsets.ModelViewSet):
+        """
+        This viewset automatically provides `list`, `create`, `retrieve`,
+        `update` and `destroy` actions.
+        """
+        queryset = Specie.objects.select_related('growth_rate', 'shape')
+        serializer_class = SpecieSerializer
+
+        def get_serializer_class(self):
+            if self.action == 'retrieve':
+                return DetailPokemonSerializer
+            return super().get_serializer_class()
+
 
 .. Y devolver un serializer u otro dependiendo de si lo pones en un listado o pides sólo uno, por ejemplo. Así
    ahorras datos. ¿No es genial?
 
 Anidar serializers
 ------------------
+
+.. code-block:: python
+
+    class GrowthRateSerializer(serializers.HyperlinkedModelSerializer):
+        class Meta:
+            model = GrowthRate
+            exclude = ()
+
+
+    class SpecieSerializer(SimpleSpecieSerializer):
+        growth_rate = GrowthRateSerializer()  # nested serializer
+
+        class Meta(SimpleSpecieSerializer.Meta):
+            exclude = ()
+
 
 .. Y por si fuera poco, puedes reutilizar tus serializers para usarlos en otros serializers, anidados. Esto es
    lo que se llama *nested serializers*
