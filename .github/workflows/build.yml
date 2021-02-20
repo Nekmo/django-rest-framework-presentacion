@@ -21,6 +21,8 @@ jobs:
       - name: Publish presentation
         run: |
           mv _build /tmp/
+          git config --global user.name 'Django Rest Framework Presentacion'
+          git config --global user.email 'contacto@nekmo.com'
           git checkout --orphan presentation
           rm -rf *
           mv /tmp/_build/revealjs/* .
