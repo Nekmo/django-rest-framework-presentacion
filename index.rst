@@ -34,14 +34,14 @@ Sobre mí **Nekmo**
 |                                   |
 +-----------------------------------+
 
-.. Buenas, soy Juan José Oyague, más conocido en las redes como Nekmo; y llevo media vida programando en Python,
+.. Buenas, soy Juan José Oyagüe, más conocido en las redes como Nekmo; y llevo media vida programando en Python,
    usando Django ya desde su versión 1.1. Así que no os puedo engañar...
 
 
 **Django** + *Django Rest Framework*
 ====================================
 
-.. ... Me gusta Django, y Django Rest Framework (diapositiva corazón). Y espero conseguir haceros llegar un poco de mi
+.. ... Me gusta Django, y Django Rest Framework. Y espero conseguir haceros llegar un poco de mi
    pasión por estos dos frameworks, y de los motivos por los que llevo usándolos tanto tiempo. Vale, pero
    antes de llegar a mí Django Rest Framework, llego...
 
@@ -111,10 +111,15 @@ Django Rest Framework
 .. ¿Recordáis que hemos dicho que tiene módulos para todo? Pues Django Rest Framework es uno de esos módulos.
    Se instala en prácticamente en 3 o 4 pasos, y listo para funcionar.
 
-Framework para desarrollar **APIs REST**
-----------------------------------------
+Framework para desarrollar **APIs REST***
+-----------------------------------------
 
-.. Pero espera... Django Rest Framework es un framework... ¿Y Django también es un framework?
+``*`` **API REST:** Arquitectura de software que trabaja con los recursos mediante los operadores HTTP *(POST, GET,
+PUT, DELETE...)*.
+
+.. ¿Y cómo podríamos definir Django Rest Framework? Se trata de un framework para desarrollar APIs REST, una
+   arquitectura de software en que se trabaja con *recursos* usando los operadores HTTP, tales como POST, GET, PUT
+   o DELETE. Pero espera... Hemos dicho que Django Rest Framework es un framework... ¿Y Django también es un framework?
 
 
 Meta framework
