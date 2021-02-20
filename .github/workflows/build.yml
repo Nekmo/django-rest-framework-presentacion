@@ -22,6 +22,7 @@ jobs:
         run: |
           mv _build /tmp/
           git checkout --orphan presentation
+          rm -rf *
           mv /tmp/_build/revealjs/* .
           git add --all
           git commit -am "Updated presentation at "`date` || echo "Already updated"
