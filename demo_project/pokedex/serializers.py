@@ -1,5 +1,3 @@
-from django.contrib.auth import get_user_model
-from drf_writable_nested import NestedUpdateMixin, NestedCreateMixin
 from rest_framework import serializers
 
 from pokedex.models import Pokemon, Specie, Generation, Habitat, Shape, GrowthRate, Region
@@ -18,43 +16,44 @@ class DemoSerializerMixin(object):
         return fields
 
 
-class RegionSerializer(DemoSerializerMixin, NestedCreateMixin, NestedUpdateMixin,
-                       serializers.HyperlinkedModelSerializer):
+class SimpleSpecieSerializer(DemoSerializerMixin, serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Specie
+        exclude = ('growth_rate', 'shape', 'habitat', 'generation', 'evolves_from_specie')
+
+
+class RegionSerializer(DemoSerializerMixin, serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Region
         exclude = ()
 
 
-class GenerationSerializer(DemoSerializerMixin, NestedCreateMixin, NestedUpdateMixin,
-                           serializers.HyperlinkedModelSerializer):
+class GenerationSerializer(DemoSerializerMixin, serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Generation
         exclude = ()
 
 
-class HabitatSerializer(DemoSerializerMixin, NestedCreateMixin, NestedUpdateMixin,
-                        serializers.HyperlinkedModelSerializer):
+class HabitatSerializer(DemoSerializerMixin, serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Habitat
         exclude = ()
 
 
-class ShapeSerializer(DemoSerializerMixin, NestedCreateMixin, NestedUpdateMixin,
-                      serializers.HyperlinkedModelSerializer):
+class ShapeSerializer(DemoSerializerMixin, serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Shape
         exclude = ()
 
 
-class GrowthRateSerializer(DemoSerializerMixin, NestedCreateMixin, NestedUpdateMixin,
-                           serializers.HyperlinkedModelSerializer):
+class GrowthRateSerializer(DemoSerializerMixin, serializers.HyperlinkedModelSerializer):
     class Meta:
         model = GrowthRate
         exclude = ()
 
 
-class SpecieSerializer(DemoSerializerMixin, NestedCreateMixin, NestedUpdateMixin,
-                       serializers.HyperlinkedModelSerializer):
+class SpecieSerializer(SimpleSpecieSerializer):
     growth_rate = GrowthRateSerializer()
     shape = ShapeSerializer()
     habitat = HabitatSerializer()
@@ -63,26 +62,20 @@ class SpecieSerializer(DemoSerializerMixin, NestedCreateMixin, NestedUpdateMixin
         queryset=Specie.objects.all(), view_name='specie-detail', style={'base_template': 'input.html'}
     )
 
-    class Meta:
-        model = Specie
+    class Meta(SimpleSpecieSerializer.Meta):
         exclude = ()
 
 
-class PokemonSerializer(DemoSerializerMixin, NestedCreateMixin, NestedUpdateMixin,
-                        serializers.HyperlinkedModelSerializer):
-    specie = SpecieSerializer()
+class PokemonSerializer(DemoSerializerMixin, serializers.HyperlinkedModelSerializer):
+    specie = SimpleSpecieSerializer()
 
     class Meta:
         model = Pokemon
         exclude = ()
 
 
-class SimpleUserSerializer(serializers.HyperlinkedModelSerializer):
+class DetailPokemonSerializer(PokemonSerializer):
+    specie = SpecieSerializer()
 
-    class Meta:
-        model = get_user_model()
-        fields = ('url', 'id', 'username', 'email', 'is_active', 'date_joined')
-
-
-class UserSerializer(SimpleUserSerializer):
-    pass
+    class Meta(PokemonSerializer.Meta):
+        pass

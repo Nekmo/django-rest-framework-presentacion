@@ -1,13 +1,15 @@
-from django.contrib.auth.models import User
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, filters
-from rest_framework.pagination import PageNumberPagination
+from rest_framework import viewsets, status
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from pokedex.filters import PokemonFilter, SpecieFilter, RegionFilter, GenerationFilter, HabitatFilter, ShapeFilter, \
     GrowthRateFilter
 from pokedex.models import Pokemon, Specie, GrowthRate, Generation, Habitat, Shape, Region
-from pokedex.serializers import PokemonSerializer, UserSerializer, SpecieSerializer, GrowthRateSerializer, \
-    ShapeSerializer, HabitatSerializer, GenerationSerializer, RegionSerializer
+from pokedex.serializers import PokemonSerializer, SpecieSerializer, GrowthRateSerializer, \
+    ShapeSerializer, HabitatSerializer, GenerationSerializer, RegionSerializer, DetailPokemonSerializer
+
+
+PHOTO_FORMAT_URL = 'https://img.pokemondb.net/artwork/{identifier}.jpg'
 
 
 class SpecieViewSet(viewsets.ModelViewSet):
@@ -78,12 +80,33 @@ class PokemonViewSet(viewsets.ModelViewSet):
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
 
-    Additionally we also provide an extra `highlight` action.
+    Additionally we also provide an extra `detail_list` and `photo` actions.
     """
-    queryset = Pokemon.objects\
-        .select_related('specie', 'specie__growth_rate', 'specie__shape', 'specie__habitat', 'specie__generation')
+    queryset = Pokemon.objects.select_related('specie')
     serializer_class = PokemonSerializer
     filter_class = PokemonFilter
     ordering_fields = ('id', 'identifier', 'specie__generation__identifier', 'height',
                        'weight', 'base_experience', 'order', 'is_default')
     search_fields = ('identifier',)
+
+    def get_serializer_class(self):
+        if self.action in ['retrieve', 'detail_list']:
+            return DetailPokemonSerializer
+        return super().get_serializer_class()
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.action in ['retrieve', 'detail_list']:
+            queryset = queryset.select_related('specie__growth_rate', 'specie__shape', 'specie__habitat',
+                                               'specie__generation')
+        return queryset
+
+    @action(detail=False)
+    def detail_list(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    @action(detail=True)
+    def photo(self, *args, **kwargs):
+        obj = self.get_object()
+        photo_url = PHOTO_FORMAT_URL.format(**vars(obj))
+        return Response(headers={'Location': photo_url}, status=status.HTTP_302_FOUND)
