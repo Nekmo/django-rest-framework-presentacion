@@ -173,22 +173,45 @@ Ejemplo web
    :data-transition: concave
 
 
+.. image:: images/api-web-list.png
+
 .. Además, nos construye una API REST muy vistosa y navegable y que nos mostrará el JSON resaltado de nuestros objetos
    de la base de datos.
 
 Formulario
 ----------
 
-.. No sólo eso, sino que nos construye formularios para crear nuevos objetos. ¿Pero cómo funciona todo esto?
+.. revealjs_section::
+   :data-transition: concave-in slide-out
 
+
+.. image:: images/api-web-form.png
+
+
+.. No sólo eso, sino que nos construye formularios para crear nuevos objetos. Pero estas no son sus únicas
+   características.
+
+Características
+===============
+
+.. revealjs_fragments::
+
+    * **Interpretar** y **renderizar** a múltiples formatos.
+    * **Clases genéricas** para facilitar operaciones **CRUD**.
+    * Potentes **serializers** para trabajar **con o sin** el **ORM**.
+    * **Paginación**, **filtrado**, **búsqueda** y **ordenación** en listados.
+    * Compatible con **validadores** y **sistema de permisos**.
+    * ... entre otras opciones.
+
+.. (leer puntos). Pero esto no es lo único bueno de Django Rest Framework.
 
 Estructura
 ==========
 
 .. image:: images/esquema-drf.png
 
-.. Si Django Rest Framework me gusta, no es sólo por sus opciones o su modo web, sino porque a diferencia de otros
-   módulos que hacen lo mismo, entiende perfectamente la filosofía de Django, y ello se ve en su estructura base.
+.. Si Django Rest Framework me gusta, no es sólo por sus opciones o su modo web o sus opciones, sino porque a diferencia
+   de otros módulos que hacen lo mismo, entiende perfectamente la filosofía de Django, y ello se ve en su estructura.
 
 Serializers
 ===========
@@ -202,25 +225,57 @@ Los serializers, serializan
 
 *Nekmo, 2021.*
 
-.. Los serializers, serializan. Juan José Oyague, 2021. Vale, ahora en serio.
+.. Los serializers, serializan. Nekmo, 2021. Vale, ahora en serio.
 
-Convertir la entrada
---------------------
+Interpretar la entrada
+----------------------
 
 .. revealjs_section::
    :data-transition: fade-in zoom-out
 
-.. Los serializers, son los responsables de convertir la entrada de datos, vamos, lo que mete el usuario a través de la
-   API, en un objeto en Python, que normalmente servirá para crear o actualizar un objeto en la base de datos
+.. code-block:: json
 
-Convertir la salida
--------------------
+    {
+        "identifier": "bulbasaur",
+        "color": 5,
+        "gender_rate": 1,
+        "has_gender_differences": false
+    }
+
+.. Los serializers, son los responsables de convertir y validar la entrada de datos, vamos, lo que mete el usuario a
+   través de la API, en un objeto en Python, que normalmente servirá para crear o actualizar un objeto en la base de
+   datos. Para ello usaríamos el siguiente serializer.
+
+
+.. revealjs_break::
+
+.. code-block:: python
+
+    class SpecieSerializer(serializers.HyperlinkedModelSerializer):
+        identifier = serializers.CharField()
+        color = serializers.ChoiceField(choices=COLORS)
+        gender_rate = serializers.IntegerField()
+        has_gender_differences = serializers.BooleanField(default=False)
+
+        class Meta:
+            model = Specie
+            exclude = ()
+
+.. Como puede verse, permite definir los tipos, los valores, el valor por defecto... Django Rest Framework los
+   completa desde los modelos, pero aquí los hemos puesto manualmente.
+
+
+Devuelve la salida
+------------------
 
 .. revealjs_section::
    :data-transition: zoom-in fade-out
 
-.. También hacen lo mismo pero a la inversa: convierten el objeto a una salida compatible, para que nos entendamos, un
-   diccionario, y devolverlo al usuario.
+.. image:: images/api-web-detail.png
+
+.. También hacen lo mismo pero a la inversa: convierten el objeto a una salida compatible, un data, el cual
+   normalmente será un diccionario el cual el renderer (del que hablaremos luego) transformará en json, xml, o
+   lo que proceda.
 
 Viewsets
 ========
@@ -238,18 +293,62 @@ Lógica encargada de procesar las peticiones de la API para **trabajar con los o
 
 Ejemplo viewset
 ---------------
-(ejemplo código: https://www.django-rest-framework.org/api-guide/viewsets/ ).
 
-.. Por ejemplo, el viewset ``UserViewSet`` tendrá las siguientes acciones para trabajar con los usuarios: listar, crear,
-   obtener y eliminar.
+.. code-block:: python
+
+    class SpecieViewSet(viewsets.ViewSet):
+        """A simple ViewSet for listing or retrieving species."""
+
+        def list(self, request):
+            queryset = Specie.objects.all()
+            serializer = SpecieSerializer(queryset, many=True)
+            return Response(serializer.data)
+
+        def retrieve(self, request, pk=None):
+            queryset = Specie.objects.all()
+            user = get_object_or_404(queryset, pk=pk)
+            serializer = SpecieSerializer(user)
+            return Response(serializer.data)
+
+
+.. Por ejemplo, el viewset ``SpecieViewSet`` tendrá las siguientes acciones para trabajar con los objetos: listar y
+   obtener.
+
+.. revealjs_break::
+
+.. code-block:: python
+
+    class SpecieViewSet(viewsets.ModelViewSet):
+        """
+        This viewset automatically provides `list`, `create`, `retrieve`,
+        `update` and `destroy` actions.
+
+        Additionally we also provide an extra `photo` action.
+        """
+        queryset = Specie.objects.select_related('growth_rate', 'shape', 'habitat')
+        serializer_class = SimpleSpecieSerializer
+        filter_class = SpecieFilter
+        ordering_fields = ('identifier', 'generation', 'evolves_from_specie', 'color')
+        search_fields = ('identifier', 'generation__identifier', 'shape__identifier')
+
+        @action(detail=True)
+        def photo(self, *args, **kwargs):
+            obj = self.get_object()
+            photo_url = PHOTO_FORMAT_URL.format(**vars(obj))
+            return Response(headers={'Location': photo_url},
+                            status=status.HTTP_302_FOUND)
+
+.. Heredando de la clase ModelViewSet automáticamente tendrá las acciones listar, crear, obtener y eliminar sin
+   tener que definirlas.
+
 
 Parsers y renderers
 -------------------
 
 También se encarga de definir:
 
-* Los **parsers** *(leen e interpretan la petición)*.
-* Los **renderers** *(devuelven al usuario la respuesta)*.
+* Los **parsers** *(leen e convierten la petición)* para luego interpretarse y validarse con los **serializers**.
+* Los **renderers** *(devuelven al usuario la respuesta)* a partir del data del **serializer**.
 
 Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
 
@@ -271,8 +370,8 @@ Otras opciones viewsets
 .. No sólo esto, sino que se encargan de muchas cosas más, como filtrado y paginación* en los listados,
    *permisos y autenticación*, *caché*, *documentación* y mucho más. Vale, y hasta aquí la mitad de la presentación.
 
-Mitad presentación
-==================
+Vamos terminando
+================
 
 .. revealjs_section::
     :data-background-color: #000000

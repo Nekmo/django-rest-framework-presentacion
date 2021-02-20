@@ -6,8 +6,8 @@ from pokedex.filters import PokemonFilter, SpecieFilter, RegionFilter, Generatio
     GrowthRateFilter
 from pokedex.models import Pokemon, Specie, GrowthRate, Generation, Habitat, Shape, Region
 from pokedex.serializers import PokemonSerializer, SpecieSerializer, GrowthRateSerializer, \
-    ShapeSerializer, HabitatSerializer, GenerationSerializer, RegionSerializer, DetailPokemonSerializer
-
+    ShapeSerializer, HabitatSerializer, GenerationSerializer, RegionSerializer, DetailPokemonSerializer, \
+    SimpleSpecieSerializer
 
 PHOTO_FORMAT_URL = 'https://img.pokemondb.net/artwork/{identifier}.jpg'
 
@@ -20,7 +20,7 @@ class SpecieViewSet(viewsets.ModelViewSet):
     Additionally we also provide an extra `highlight` action.
     """
     queryset = Specie.objects.select_related('growth_rate', 'shape', 'habitat', 'generation')
-    serializer_class = SpecieSerializer
+    serializer_class = SimpleSpecieSerializer
     filter_class = SpecieFilter
     ordering_fields = ('identifier', 'generation', 'evolves_from_specie', 'color', 'shape', 'habitat',
                        'gender_rate', 'capture_rate', 'base_happiness', 'is_baby', 'hatch_counter',

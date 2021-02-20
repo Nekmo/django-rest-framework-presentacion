@@ -22,6 +22,7 @@
 // Default mixins and settings -----------------
 @import "./mixins.scss";
 @import "./settings.scss";
+@import "./monokai.scss";
 // ---------------------------------------------
 
 
@@ -142,6 +143,11 @@ body::before {
 @import "./template.scss";
 // ---------------------------------------------
 
+.reveal pre code span {
+    font-family: monospace;
+   	text-transform: none;
+}
+
 .reveal h1 {
     font-size: 3.5em;
 }
@@ -180,6 +186,11 @@ ul li {
 .reveal section img {
     border: 0;
     box-shadow: 0 0;
+}
+
+.reveal pre code.hljs {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+    padding: 15px;
 }
 
 #intro {
@@ -239,6 +250,13 @@ ul li {
     }
 }
 
+#ejemplo-web, #formulario, #devuelve-la-salida, #baterias-incluidas {
+    // margin-top: -100px;
+    img {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+    }
+}
+
 #django, #django-rest-framework, #antorchas, #pastel-1, #pastel-2, #estructura, #pikachu {
     h1, h2, h3 {
         display: none;
@@ -271,7 +289,7 @@ ul li {
 }
 
 #framework-para-desarrollar-apis-rest, #django-rest-framework-complementa, #viewsets, #parsers-y-renderers,
-#otras-opciones-viewsets, #en-resumen {
+#otras-opciones-viewsets, #en-resumen, #caracteristicas {
     strong {
         color: $linkColor;
     }
@@ -293,7 +311,7 @@ ul li {
     }
 }
 
-#mitad-presentacion, #demo {
+#vamos-terminando, #demo {
     h2 {
         font-weight: bold;
         font-size: 4em;
@@ -301,8 +319,12 @@ ul li {
     }
 }
 
+#vamos-terminando {
+    margin-top: 180px;
+}
 
-#y-no-podriamos-reducirlo {
+
+#y-no-podriamos-reducirlo, #ejemplo-web, #formulario {
     font-size: 0.6em;
 }
 
@@ -311,3 +333,5 @@ ul li {
         font-weight: bold;
     }
 }
+
+
