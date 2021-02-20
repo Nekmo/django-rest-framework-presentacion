@@ -4,6 +4,8 @@
 #
 #    pip-compile
 #
+-e git+https://github.com/Nekmo/sphinx-revealjs.git@html-line#egg=sphinx_revealjs
+    # via -r requirements.in
 alabaster==0.7.12
     # via sphinx
 babel==2.9.0
@@ -40,8 +42,6 @@ requests==2.25.1
     # via sphinx
 snowballstemmer==2.1.0
     # via sphinx
-sphinx-revealjs==1.0.1
-    # via -r requirements.in
 sphinx==3.5.1
     # via
     #   -r requirements.in
