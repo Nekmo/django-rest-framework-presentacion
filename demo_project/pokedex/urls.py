@@ -19,7 +19,6 @@ router.register(r'shapes', viewsets.ShapeViewSet)
 router.register(r'habitats', viewsets.HabitatViewSet)
 router.register(r'generations', viewsets.GenerationViewSet)
 router.register(r'regions', viewsets.RegionViewSet)
-router.register(r'users', viewsets.UserViewSet)
 
 
 schema_view = get_schema_view(

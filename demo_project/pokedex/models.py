@@ -29,12 +29,18 @@ COLORS = [
 class Shape(models.Model):
     identifier = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.identifier
+
     class Import:
         file = 'pokemon_shapes'
 
 
 class Habitat(models.Model):
     identifier = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.identifier
 
     class Import:
         file = 'pokemon_habitats'
@@ -44,12 +50,18 @@ class GrowthRate(models.Model):
     identifier = models.CharField(max_length=20)
     formula = models.TextField()
 
+    def __str__(self):
+        return self.identifier
+
     class Import:
         file = 'growth_rates'
 
 
 class Region(models.Model):
     identifier = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.identifier
     
     class Import:
         file = 'regions'
@@ -58,6 +70,9 @@ class Region(models.Model):
 class Generation(models.Model):
     main_region = models.ForeignKey(Region, on_delete=models.PROTECT)
     identifier = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.identifier
     
     class Import:
         file = 'generations'
@@ -82,6 +97,9 @@ class Specie(models.Model):
     order = models.PositiveSmallIntegerField()
     conquest_order = models.PositiveSmallIntegerField(null=True, blank=True)
 
+    def __str__(self):
+        return self.identifier
+
     class Import:
         file = 'pokemon_species'
         fields_map = {'color': 'color_id'}
@@ -95,6 +113,9 @@ class Pokemon(models.Model):
     base_experience = models.PositiveSmallIntegerField()
     order = models.PositiveSmallIntegerField()
     is_default = models.BooleanField()
+
+    def __str__(self):
+        return self.identifier
 
     class Import:
         file = 'pokemon'

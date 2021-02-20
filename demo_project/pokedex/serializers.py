@@ -59,7 +59,9 @@ class SpecieSerializer(DemoSerializerMixin, NestedCreateMixin, NestedUpdateMixin
     shape = ShapeSerializer()
     habitat = HabitatSerializer()
     generation = GenerationSerializer()
-    # evolves_from_specie = SpecieSerializer()
+    evolves_from_specie = serializers.HyperlinkedRelatedField(
+        queryset=Specie.objects.all(), view_name='specie-detail', style={'base_template': 'input.html'}
+    )
 
     class Meta:
         model = Specie
