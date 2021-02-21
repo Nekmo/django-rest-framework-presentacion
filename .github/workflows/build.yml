@@ -16,10 +16,12 @@ jobs:
           python-version: '3.9'
       - name: Install dependencies
         run: |
+          apt update && apt install sassc
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Create presentation
         run: |
+          cd _static && sassc theme.scss theme.css && cd ..
           make revealjs
       - name: Publish presentation
         run: |
@@ -27,7 +29,7 @@ jobs:
           git config --global user.name 'Django Rest Framework Presentacion'
           git config --global user.email 'contacto@nekmo.com'
           git checkout --orphan presentation
-          rm -rf *
+          rm -rf * .gitignore
           mv /tmp/_build/revealjs/* .
           git add --all
           git commit -am "Updated presentation at $(date)" || echo "Already updated"
