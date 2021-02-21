@@ -16,12 +16,15 @@ jobs:
           python-version: '3.9'
       - name: Install dependencies
         run: |
-          apt update && apt install sassc
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Compile CSS from SCSS files
+        uses: gha-utilities/sass-build@v0.3.6
+        with:
+          source: _static/theme.scss
+          destination: _static/theme.css
       - name: Create presentation
         run: |
-          cd _static && sassc theme.scss theme.css && cd ..
           make revealjs
       - name: Publish presentation
         run: |
