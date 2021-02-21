@@ -40,7 +40,7 @@ Docker-compose. Para ello, ejecutar::
     # Levantar servicios nginx y gunicorn del docker-compose. Escuchará en el puerto 80.
     docker-compose up -d
 
-Si el puerto ``80`` esta disponible en la máquina, el proyecto estará disponible en `localhost <http://localhost/>`.
+Si el puerto ``80`` esta disponible en la máquina, el proyecto estará disponible en `localhost <http://localhost/>`_.
 
 También puede ejecutarse el proyecto en modo desarrollo en la máquina, recomendándose la instalación en un virtualenv.
 Para ello::
@@ -59,7 +59,7 @@ Para ello::
     python manage.py runserver 8000
 
 Tras la instalación y configuración el proyecto pasará a estar disponible en
-`localhost en el puerto 8000 <http://localhost:8000/>`.
+`localhost en el puerto 8000 <http://localhost:8000/>`_.
 
 Copyright
 =========
