@@ -1,3 +1,13 @@
+.. image:: https://raw.githubusercontent.com/Nekmo/django-rest-framework-presentacion/master/logo.png
+    :width: 100%
+
+|
+
+.. image:: https://img.shields.io/github/workflow/status/Nekmo/django-rest-framework-presentacion/Build.svg?style=flat-square&maxAge=2592000
+  :target: https://github.com/Nekmo/django-rest-framework-presentacion/actions?query=workflow%3ABuild
+  :alt: Latest CI build status
+
+
 ===============================================
 Construyendo APIs con **Django Rest Framework**
 ===============================================
