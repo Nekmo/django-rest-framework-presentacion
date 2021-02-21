@@ -32,7 +32,7 @@ jobs:
           git config --global user.name 'Django Rest Framework Presentacion'
           git config --global user.email 'contacto@nekmo.com'
           git checkout --orphan presentation
-          rm -rf * .gitignore
+          rm -rf * .gitignore .github
           mv /tmp/_build/revealjs/* .
           touch .nojekyll
           git add --all
