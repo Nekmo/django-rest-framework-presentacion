@@ -103,6 +103,9 @@ Qué incluye
     * envío de **correos**...
     * Pero claro, **no API Rest**.
 
+
+.. ¿Y qué incluye de serie? Pues tendríamos... (leer listado).
+
 Django Rest Framework
 =====================
 
@@ -180,8 +183,8 @@ Ejemplo web
 
 .. image:: images/api-web-list.png
 
-.. Además, nos construye una API REST muy vistosa y navegable y que nos mostrará el JSON resaltado de nuestros objetos
-   de la base de datos.
+.. Además, nos construye una API REST muy vistosa y navegable y que nos mostrará el JSON resaltado e indentado de
+   nuestros objetos.
 
 Formulario
 ----------
@@ -205,7 +208,7 @@ Características
     * **Clases genéricas** para facilitar operaciones **CRUD**.
     * Potentes **serializers** para trabajar **con o sin** el **ORM**.
     * **Paginación**, **filtrado**, **búsqueda** y **ordenación** en listados.
-    * Compatible con **validadores** y **sistema de permisos**.
+    * Compatible con los **validadores** y **sistema de permisos** de Django.
     * ... entre otras opciones.
 
 .. (leer puntos). Pero esto no es lo único bueno de Django Rest Framework.
@@ -215,7 +218,7 @@ Estructura
 
 .. image:: images/esquema-drf.png
 
-.. Si Django Rest Framework me gusta, no es sólo por sus opciones o su modo web o sus opciones, sino porque a diferencia
+.. Si Django Rest Framework me gusta, no es sólo por sus opciones o su modo web, sino porque a diferencia
    de otros módulos que hacen lo mismo, entiende perfectamente la filosofía de Django, y ello se ve en su estructura.
 
 Serializers
@@ -291,10 +294,11 @@ Lógica encargada de procesar las peticiones de la API para **trabajar con los o
     * **Crearlos**
     * **Listarlos**
     * **Actualizarlos**
+    * **Obtenerlos**
     * **Eliminarlos**...
 
-.. Los viewsets en cambio, son la lógica encargada de devolver tus objetos, a través de la API, crearlos,
-   listarlos, etc.
+.. Los viewsets en cambio, son la lógica encargada de devolver tus objetos, a través de la API, (leer puntos):
+   crearlos, listarlos, etc.
 
 Ejemplo viewset
 ---------------
@@ -343,8 +347,9 @@ Ejemplo viewset
             return Response(headers={'Location': photo_url},
                             status=status.HTTP_302_FOUND)
 
-.. Heredando de la clase ModelViewSet automáticamente tendrá las acciones listar, crear, obtener y eliminar sin
-   tener que definirlas.
+.. Y como esto es algo muy habitual y repetitivo, heredando de ModelViewSet automáticamente tendrá estas acciones y
+   además las de crear, actualizar y borrar sin necesidad de definirlas. En este ejemplo además ponemos una acción
+   adicional.
 
 
 Parsers y renderers
@@ -358,8 +363,8 @@ También se encarga de definir:
 Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
 
 .. El viewset no sólo se encarga de esto: también define los llamados *parsers* que son las formas de leer la
-   información del usuario para aceptar json, xml, entre otros, y los *renders*, para devolver los datos según pueda
-   quererlo el usuario.
+   información del usuario para aceptar json, xml, entre otros, y los *renders*, para devolver los datos según el que
+   desee el usuario, tal y como la vista web que ya vimos.
 
 Otras opciones viewsets
 -----------------------
@@ -429,7 +434,7 @@ En resumen
 
     * **Serializers**: representan e interpretan los datos.
     * **Viewsets**: gestionan las peticiones y devuelven la respuesta.
-    * **Routers**: corresponde a las urls que se utilizarán
+    * **Routers**: corresponde a las urls que se utilizarán.
 
 .. Así pues, en resumen tenemos: serializers que representan e interpretan los datos, viewsets que gestionan las
    peticiones, y routers que corresponde a las urls que se utilizarán.
@@ -527,8 +532,7 @@ Demo
     :data-background-image: _static/demo.gif
 
 
-.. Aunque hay módulos para swagger, documentación adicional y más, Django Rest Framework ya incluye una interfaz
-   navegable muy avanzada y fácil de usar. Vamos a ver un ejemplo con, por ejemplo, ...
+.. Y ya pasaríamos a verlo en acción. Y vamos a ver un ejemplo con, por ejemplo, ...
 
 Pikachu
 -------
@@ -538,7 +542,7 @@ Pikachu
     :data-background-image: _static/pikachu.jpg
 
 
-.. Pokémon. Porque, ¿por qué no?
+.. Pokémons. Porque, ¿por qué no?
 
 ¡Muchas gracias!
 ================
@@ -563,7 +567,7 @@ Vuelve a verla, prueba la demo y mira el código fuente en:
 Contactar
 ---------
 
-* **Sitio web:** `contacto@nekmo.com <mailto:contacto@nekmo.com>`_
+* **Sitio web:** `nekmo.com <https://nekmo.com>`_
 * **Email:** `contacto@nekmo.com <mailto:contacto@nekmo.com>`_
 * **Twitter:** `@nekmocom <https://twitter.com/nekmocom>`_
 * **Telegram:** `@nekmo <https://t.me/nekmo>`_
