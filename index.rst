@@ -352,6 +352,12 @@ Ejemplo viewset
    adicional.
 
 
+Filtrado y paginación
+---------------------
+
+Permisos y autenticación
+------------------------
+
 Parsers y renderers
 -------------------
 
@@ -371,8 +377,6 @@ Otras opciones viewsets
 
 .. revealjs_fragments::
 
-    * **Filtrado y paginación** en listados.
-    * **Permisos y autenticación**.
     * **Caché respuesta**.
     * **Documentación**.
     * ... y mucho más.
