@@ -348,7 +348,7 @@ Ejemplo viewset
 
 .. Y como esto es algo muy habitual y repetitivo, heredando de ModelViewSet automáticamente tendrá estas acciones y
    además las de crear, actualizar y borrar sin necesidad de definirlas. En este ejemplo además ponemos una acción
-   adicional. Pero vamos a ver más en detalle lo que hay en este viewset...
+   adicional. Pero vamos a ver más en detalle algunas de las opciones de este viewset...
 
 
 Filtrado y paginación
@@ -387,9 +387,6 @@ Filtrado y paginación
    identifier tienen como lookups, es decir, como opciones en la query SQL, que sea exactamente el valor, que
    contenga ignorando las mayúsculas o que se encuentre entre diferentes valores.
 
-Permisos y autenticación
-------------------------
-
 Parsers y renderers
 -------------------
 
@@ -410,6 +407,37 @@ Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
 
 .. Por ejemplo, en vez de tener como salida del renderer JSON, podemos solicitar que se nos devuelva XML.
 
+Opciones por defecto
+--------------------
+
+.. code-block:: python
+
+    # settings.py
+    # -----------
+    REST_FRAMEWORK = {
+        'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+        'PAGE_SIZE': 20,
+        'DEFAULT_AUTHENTICATION_CLASSES': [
+            'rest_framework.authentication.TokenAuthentication',
+            'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        ]
+        'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.IsAuthenticated',
+        ]
+        'DEFAULT_RENDERER_CLASSES': (
+            'rest_framework_xml.renderers.XMLRenderer',
+        ),
+        'DEFAULT_FILTER_BACKENDS': (
+            'django_filters.rest_framework.DjangoFilterBackend',
+        ),
+    }
+
+.. Algunas de las opciones de los viewsets pueden definirse de forma global por defecto para todo el proyecto, como el
+   caso de los parsers y renderers, que no se definían en el viewset. Las opciones por defecto se definen en el
+   settings de Django. en este ejemplo, definimos la paginación y su tamaño, las clases para la autenticación, entre
+   las que se encuentra el de token, los permisos necesarios, los renderers como decíamos, o las clases de filtrado.
+
+
 Otras opciones viewsets
 -----------------------
 
@@ -419,8 +447,9 @@ Otras opciones viewsets
     * **Documentación**.
     * ... y mucho más.
 
-.. No sólo esto, sino que se encargan de muchas cosas más, como filtrado y paginación* en los listados,
-   *permisos y autenticación*, *caché*, *documentación* y mucho más. Vale, y hasta aquí la mitad de la presentación.
+.. Pero esto no es lo único de lo que se encargan los viewsets. También se encargan de muchas cosas más, como
+   filtrado y paginación* en los listados, *permisos y autenticación*, *caché*, *documentación* y mucho más. Vale, y
+   hasta aquí la mitad de la presentación.
 
 Vamos terminando
 ================
