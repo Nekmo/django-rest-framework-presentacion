@@ -259,7 +259,39 @@ Interpretar la entrada
 
 .. code-block:: python
 
+    # serializers.py
+    # --------------
     class SpecieSerializer(serializers.HyperlinkedModelSerializer):
+
+        class Meta:
+            model = Specie
+            exclude = ()
+
+.. Al provenir de un modelo, Django Rest Framework es capaz de obtener los campos y sus tipos.
+
+.. revealjs_break::
+
+.. code-block:: python
+
+    # models.py
+    # ---------
+    class Specie(models.Model):
+        identifier = models.CharField(_('Specie identifier'), max_length=50)
+        color = models.CharField(max_length=8, choices=COLORS)
+        gender_rate = models.SmallIntegerField()
+        has_gender_differences = models.BooleanField()
+
+.. Este sería el modelo usado y del que se obtienen los campos, aunque también es posible definirlos manualmente
+   en el serializer.
+
+.. revealjs_break::
+
+.. code-block:: python
+
+    # serializers.py
+    # --------------
+    class SpecieSerializer(serializers.HyperlinkedModelSerializer):
+
         identifier = serializers.CharField()
         color = serializers.ChoiceField(choices=COLORS)
         gender_rate = serializers.IntegerField()
@@ -269,9 +301,9 @@ Interpretar la entrada
             model = Specie
             exclude = ()
 
-.. Como puede verse, permite definir los tipos, los valores, el valor por defecto... Django Rest Framework los
-   completa desde los modelos, pero aquí los hemos puesto manualmente.
-
+.. Aunque no es necesario definir los campos de esta forma, puede ser útil para cambiar algún tipo, cambiar las
+   opciones, etc. También es necesario hacerlo de esta forma si el serializer no proviene de un modelo, y creamos
+   nuestro propio serializer.
 
 Devuelve la salida
 ------------------
