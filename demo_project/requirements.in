@@ -8,6 +8,7 @@ drf-writable-nested
 django-crispy-forms
 djangorestframework-yaml
 drf-renderer-xlsx
+djangorestframework-xml
 djangorestframework-csv
 drf-yasg
 Markdown

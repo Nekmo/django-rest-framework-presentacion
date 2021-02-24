@@ -16,6 +16,8 @@ coreschema==0.0.4
     # via
     #   coreapi
     #   drf-yasg
+defusedxml==0.6.0
+    # via djangorestframework-xml
 django-crispy-forms==1.11.0
     # via -r requirements.in
 django-filter==2.4.0
@@ -27,6 +29,8 @@ django==3.1.1
     #   djangorestframework
     #   drf-yasg
 djangorestframework-csv==2.1.0
+    # via -r requirements.in
+djangorestframework-xml==2.0.0
     # via -r requirements.in
 djangorestframework-yaml==2.0.0
     # via -r requirements.in

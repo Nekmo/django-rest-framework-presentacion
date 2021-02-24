@@ -320,8 +320,7 @@ Ejemplo viewset
             return Response(serializer.data)
 
 
-.. Por ejemplo, el viewset ``SpecieViewSet`` tendrá las siguientes acciones para trabajar con los objetos: listar y
-   obtener.
+.. Por ejemplo, este viewset ``SpecieViewSet`` tiene las acciones listar y obtener un objeto.
 
 .. revealjs_break::
 
@@ -349,7 +348,7 @@ Ejemplo viewset
 
 .. Y como esto es algo muy habitual y repetitivo, heredando de ModelViewSet automáticamente tendrá estas acciones y
    además las de crear, actualizar y borrar sin necesidad de definirlas. En este ejemplo además ponemos una acción
-   adicional.
+   adicional. Pero vamos a ver más en detalle lo que hay en este viewset...
 
 
 Filtrado y paginación
@@ -371,6 +370,12 @@ Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
 .. El viewset no sólo se encarga de esto: también define los llamados *parsers* que son las formas de leer la
    información del usuario para aceptar json, xml, entre otros, y los *renders*, para devolver los datos según el que
    desee el usuario, tal y como la vista web que ya vimos.
+
+.. revealjs_break::
+
+.. image:: images/xml_example.png
+
+.. Por ejemplo, en vez de tener como salida del renderer JSON, podemos solicitar que se nos devuelva XML.
 
 Otras opciones viewsets
 -----------------------

@@ -142,6 +142,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.AdminRenderer',
         'rest_framework_yaml.renderers.YAMLRenderer',
         'drf_renderer_xlsx.renderers.XLSXRenderer',
+        'rest_framework_xml.renderers.XMLRenderer',
         'rest_framework_csv.renderers.CSVRenderer',
     ),
     'DEFAULT_FILTER_BACKENDS': (
