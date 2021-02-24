@@ -354,6 +354,39 @@ Ejemplo viewset
 Filtrado y paginación
 ---------------------
 
+.. code-block:: python
+
+    filter_class = SpecieFilter
+    ordering_fields = ('identifier', 'generation', 'evolves_from_specie', 'color')
+    search_fields = ('identifier', 'generation__identifier', 'shape__identifier')
+
+
+.. image:: images/filters_example.png
+    :width: 60%
+
+.. Estas opciones permiten respectivamente, definir los filtros, la ordenación y la búsqueda, las cuales se mostrarán
+   después en el modo web a modo de ayuda. En estos, es posible usar doble barra baja para acceder a modelos
+   relacionados. Pero veamos qué hay en la clase SpecieFilter...
+
+.. revealjs_break::
+
+.. code-block:: python
+
+    from django_filters.rest_framework import FilterSet
+
+    class SpecieFilter(FilterSet):
+
+        class Meta:
+            model = Specie
+            fields = {
+                'identifier': ['exact', 'icontains'],
+                'generation': ['exact', 'in'],
+            }
+
+.. Esta clase en realidad, utiliza una biblioteca externa llamada django-filter. En este caso, para los campos
+   identifier tienen como lookups, es decir, como opciones en la query SQL, que sea exactamente el valor, que
+   contenga ignorando las mayúsculas o que se encuentre entre diferentes valores.
+
 Permisos y autenticación
 ------------------------
 
