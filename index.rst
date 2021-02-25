@@ -19,6 +19,8 @@ Construyendo APIs con **Django Rest Framework**
 
 .. image:: images/drf_logo.*
 
+.. Buenas, en esta presentación os mostraré cómo construir vuestra propia API Rest con Django Rest Framework,
+   aunque antes de eso me presento...
 
 .. _sobre-mi:
 
@@ -34,8 +36,8 @@ Sobre mí **Nekmo**
 |                                   |
 +-----------------------------------+
 
-.. Buenas, soy Juan José Oyagüe, más conocido en las redes como Nekmo; y llevo media vida programando en Python,
-   usando Django ya desde su versión 1.1. Así que no os puedo engañar...
+.. Soy Juan José Oyagüe, más conocido en las redes como Nekmo; y llevo media vida programando en Python,
+   y usando Django ya desde su versión 1.1. Así que no os puedo engañar...
 
 
 **Django** + *Django Rest Framework*
@@ -43,7 +45,7 @@ Sobre mí **Nekmo**
 
 .. ... Me gusta Django, y Django Rest Framework. Y espero conseguir haceros llegar un poco de mi
    pasión por estos dos frameworks, y de los motivos por los que llevo usándolos tanto tiempo. Vale, pero
-   antes de llegar a mí Django Rest Framework, llego...
+   antes de llegar a mí Django Rest Framework, llego a mí...
 
 Django
 ======
@@ -83,7 +85,7 @@ Baterías incluidas
 .. image:: images/batteries-included.*
    :width: 100%
 
-.. Y al igual que Python, tiene baterías incluidas para todo.
+.. Y al igual que Python, tiene baterías incluidas. Esto significa, que tiene cosas para todo.
 
 Qué incluye
 -----------
@@ -101,8 +103,7 @@ Qué incluye
     * **Middleware**.
     * **Caché**.
     * envío de **correos**...
-    * Pero claro, **no API Rest**.
-
+    * Pero **no API Rest**.
 
 .. ¿Y qué incluye de serie? Pues tendríamos... (leer listado).
 
@@ -122,8 +123,18 @@ PUT, DELETE...)*.
 
 .. ¿Y cómo podríamos definir Django Rest Framework? Se trata de un framework para desarrollar APIs REST, una
    arquitectura de software en que se trabaja con *recursos* usando los operadores HTTP, tales como POST, GET, PUT
-   o DELETE. Pero espera... Hemos dicho que Django Rest Framework es un framework... ¿Y Django también es un framework?
+   o DELETE.
 
+Operadores HTTP
+---------------
+
+Respectivamente: **Crear, obtener, actualizar y eliminar**.
+
+.. image:: images/http_operators.png
+
+.. Por ejemplo, aquí aquí el operador HTTP POST crea, GET obtiene por el id, PATCH actualiza y DELETE elimina. Django
+   Rest Framework facilitar crear APIs REST como esta. Pero espera... Hemos dicho que Django Rest Framework es un
+   framework... ¿Y Django también es un framework?
 
 Meta framework
 --------------
@@ -183,7 +194,7 @@ Ejemplo web
 
 .. image:: images/api-web-list.png
 
-.. Además, nos construye una API REST muy vistosa y navegable y que nos mostrará el JSON resaltado e indentado de
+.. Además, nos construye una API REST navegable muy vistosa que nos mostrará el JSON resaltado e indentado de
    nuestros objetos.
 
 Formulario
@@ -301,7 +312,7 @@ Interpretar la entrada
             model = Specie
             exclude = ()
 
-.. Aunque no es necesario definir los campos de esta forma, puede ser útil para cambiar algún tipo, cambiar las
+.. Aunque no es necesario definir los campos de esta forma, puede ser útil para cambiar algún tipo, sus
    opciones, etc. También es necesario hacerlo de esta forma si el serializer no proviene de un modelo, y creamos
    nuestro propio serializer.
 
@@ -415,9 +426,9 @@ Filtrado y paginación
                 'generation': ['exact', 'in'],
             }
 
-.. Esta clase en realidad, utiliza una biblioteca externa llamada django-filter. En este caso, para los campos
-   identifier tienen como lookups, es decir, como opciones en la query SQL, que sea exactamente el valor, que
-   contenga ignorando las mayúsculas o que se encuentre entre diferentes valores.
+.. Esta clase en realidad, utiliza una biblioteca externa llamada django-filter. En este ejemplo hay 2 campos por los
+   que se filtra, identifier y generation, y ambos tienen lookups. Los lookups son opciones que se pueden usar en la
+   query SQL. Por ejempo icontains permite filtrar por un texto que es contenido por el campo ignorando las mayúsculas.
 
 Parsers y renderers
 -------------------
@@ -429,15 +440,16 @@ También se encarga de definir:
 
 Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
 
-.. El viewset no sólo se encarga de esto: también define los llamados *parsers* que son las formas de leer la
+.. Además, el viewset es el encargado de definir los llamados *parsers* que son las formas de leer la
    información del usuario para aceptar json, xml, entre otros, y los *renders*, para devolver los datos según el que
-   desee el usuario, tal y como la vista web que ya vimos.
+   desee el usuario.
 
 .. revealjs_break::
 
 .. image:: images/xml_example.png
 
-.. Por ejemplo, en vez de tener como salida del renderer JSON, podemos solicitar que se nos devuelva XML.
+.. Por ejemplo, en vez de tener como salida del renderer JSON como vimos antes, podemos solicitar que se nos devuelva
+   XML.
 
 Opciones por defecto
 --------------------
@@ -466,7 +478,7 @@ Opciones por defecto
 
 .. Algunas de las opciones de los viewsets pueden definirse de forma global por defecto para todo el proyecto, como el
    caso de los parsers y renderers, que no se definían en el viewset. Las opciones por defecto se definen en el
-   settings de Django. en este ejemplo, definimos la paginación y su tamaño, las clases para la autenticación, entre
+   settings de Django. En este ejemplo, definimos la paginación y su tamaño, las clases para la autenticación, entre
    las que se encuentra el de token, los permisos necesarios, los renderers como decíamos, o las clases de filtrado.
 
 
@@ -477,11 +489,11 @@ Otras opciones viewsets
 
     * **Caché respuesta**.
     * **Documentación**.
-    * ... y mucho más.
+    * **Limitar las peticiones** (Throttling).
+    * ... y más.
 
-.. Pero esto no es lo único de lo que se encargan los viewsets. También se encargan de muchas cosas más, como
-   filtrado y paginación* en los listados, *permisos y autenticación*, *caché*, *documentación* y mucho más. Vale, y
-   hasta aquí la mitad de la presentación.
+.. Pero los viewsets nos permiten más cosas, caché, documentación, limitar las peticiones y más. Vale, y hasta
+   aquí la mitad de la presentación.
 
 Vamos terminando
 ================
