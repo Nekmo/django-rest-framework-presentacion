@@ -267,6 +267,7 @@ Interpretar la entrada
 
 
 .. revealjs_break::
+    :data-transition: convex
 
 .. code-block:: python
 
@@ -281,6 +282,7 @@ Interpretar la entrada
 .. Al provenir de un modelo, Django Rest Framework es capaz de obtener los campos y sus tipos.
 
 .. revealjs_break::
+    :data-transition: convex
 
 .. code-block:: python
 
@@ -296,6 +298,7 @@ Interpretar la entrada
    en el serializer.
 
 .. revealjs_break::
+    :data-transition: convex
 
 .. code-block:: python
 
@@ -366,6 +369,7 @@ Ejemplo viewset
 .. Por ejemplo, este viewset ``SpecieViewSet`` tiene las acciones listar y obtener un objeto.
 
 .. revealjs_break::
+    :data-transition: convex-in slide-out
 
 .. code-block:: python
 
@@ -412,6 +416,7 @@ Filtrado y paginación
    relacionados. Pero veamos qué hay en la clase SpecieFilter...
 
 .. revealjs_break::
+    :data-transition: convex-in slide-out
 
 .. code-block:: python
 
@@ -445,6 +450,7 @@ Algunos **formatos**: *json* (por defecto), *xml*, *yaml*, *csv*...
    desee el usuario.
 
 .. revealjs_break::
+    :data-transition: convex-in slide-out
 
 .. image:: images/xml_example.png
 
@@ -529,6 +535,9 @@ Routers
 Urls
 ----
 
+.. revealjs_section::
+    :data-transition: convex-in slide-out
+
 .. code-block:: python
 
     # urls.py
@@ -586,6 +595,9 @@ Heredar serializers
 Condicionar serializer
 ----------------------
 
+.. revealjs_section::
+    :data-transition: convex
+
 .. code-block:: python
 
     class SpecieViewSet(viewsets.ModelViewSet):
@@ -607,6 +619,9 @@ Condicionar serializer
 
 Anidar serializers
 ------------------
+
+.. revealjs_section::
+    :data-transition: convex-in slide-out
 
 .. code-block:: python
 
@@ -673,6 +688,10 @@ Pikachu
 
 ¿Y la presentación?
 -------------------
+
+.. revealjs_section::
+    :data-transition: zoom
+
 Vuelve a verla, prueba la demo y mira el código fuente en:
 
 `github:Nekmo/django-rest-framework-presentacion <https://github.com/Nekmo/django-rest-framework-presentacion>`_
