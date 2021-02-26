@@ -1,0 +1,6 @@
+*
+!demo_project/demo
+!demo_project/pokedex
+!demo_project/manage.py
+!demo_project/requirements.*
+!compose/

@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Construyendo APIs con Django Rest Framework</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/revealjs4/dist/reveal.css" />
+    <link rel="stylesheet" href="_static/revealjs4/dist/theme/.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/theme.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&amp;display=swap" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="prev" title="Construyendo APIs con Django Rest Framework" href="index.html" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    
+    <style>
+      .reveal *, .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        font-family: 'M PLUS 1p', sans-serif;
+      }
+      
+    </style>
+    
+
+  </head><body>
+    <div class="reveal">
+        <div class="slides">
+            <a class="reference internal image-reference" href="https://raw.githubusercontent.com/Nekmo/django-rest-framework-presentacion/master/logo.png"><img alt="https://raw.githubusercontent.com/Nekmo/django-rest-framework-presentacion/master/logo.png" src="https://raw.githubusercontent.com/Nekmo/django-rest-framework-presentacion/master/logo.png" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference external image-reference" href="https://github.com/Nekmo/django-rest-framework-presentacion/actions?query=workflow%3ABuild"><img alt="Latest CI build status" src="https://img.shields.io/github/workflow/status/Nekmo/django-rest-framework-presentacion/Build.svg?style=flat-square&amp;maxAge=2592000" /></a>
+<section  id="construyendo-apis-con-django-rest-framework">
+<h1>Construyendo APIs con <strong>Django Rest Framework</strong></h1>
+<p>Presentación para <a class="reference external" href="https://www.meetup.com/es-ES/python_malaga/">Python Málaga</a> el día 25 de febrero 2021. Puedes
+utilizar esta misma presentación, íntegra o con modificaciones para cualquiera de los usos descritos en la licencia
+MIT adjunta en este proyecto.</p>
+<p>La presentación está <a class="reference external" href="https://nekmo.github.io/django-rest-framework-presentacion/">disponible online</a> ya compilada
+para su visualización.</p>
+<p>Para compilar desde el código fuente se requiere Python 3 instalado, estando probado sólo bajo Python 3.9. Se
+recomienda ejecutar los siguientes pasos en un
+<a class="reference external" href="https://nekmo.com/es/blog/python-virtualenvs-y-virtualenvwrapper/">virtualenv</a>:</p>
+<pre><code data-trim data-noescape class="default">
+# Clonar proyecto
+git clone https://github.com/Nekmo/django-rest-framework-presentacion.git
+cd django-rest-framework-presentacion
+# Instalar dependencias
+pip install -r requirements.txt
+# Compilar ficheros de estilos
+sassc _static/theme.scss _static/theme.css
+# Compilar presentación
+make revealjs
+# Copiar ficheros faltantes de Revealjs (requerido por usar versión modificada)
+wget https://files.pythonhosted.org/packages/18/b2/ed4468b5a6e2ef423cddd9ad018e28daf9992df26dd96517e40a10949ed8/sphinx-revealjs-1.0.1.tar.gz
+tar -zxvf sphinx-revealjs-1.0.1.tar.gz
+mv sphinx-revealjs-1.0.1/sphinx_revealjs/themes/sphinx_revealjs/static/revealjs4 _build/revealjs/_static/</code></pre>
+<p>Tras la compilación puede verse los ficheros resultantes en el directorio <code class="docutils literal notranslate"><span class="pre">_build</span></code>.</p>
+</section>
+<section  id="proyecto-demo">
+<h2>Proyecto demo</h2>
+<p>Con esta presentación se incluye un proyecto de demostración, el cual puede ejecutarse de forma fácil usando Docker y
+Docker-compose. Para ello, ejecutar:</p>
+<pre><code data-trim data-noescape class="default">
+# Clonar proyecto
+git clone https://github.com/Nekmo/django-rest-framework-presentacion.git
+cd django-rest-framework-presentacion
+# Levantar servicios nginx y gunicorn del docker-compose. Escuchará en el puerto 80.
+docker-compose up -d</code></pre>
+<p>Si el puerto <code class="docutils literal notranslate"><span class="pre">80</span></code> esta disponible en la máquina, el proyecto estará disponible en <a class="reference external" href="http://localhost/">localhost</a>.</p>
+<p>También puede ejecutarse el proyecto en modo desarrollo en la máquina, recomendándose la instalación en un virtualenv.
+Para ello:</p>
+<pre><code data-trim data-noescape class="default">
+# Clonar proyecto
+git clone https://github.com/Nekmo/django-rest-framework-presentacion.git
+cd django-rest-framework-presentacion
+# Acceder al directorio de la demo
+cd demo_project
+# Instalar dependencias
+pip install -r requirements.txt
+# Crear y rellenar base de datos
+python manage.py migrate --no-input
+python manage.py import_pokedex
+# Inicializar el proyecto en modo desarrollo escuchando en puerto 8000
+python manage.py runserver 8000</code></pre>
+<p>Tras la instalación y configuración el proyecto pasará a estar disponible en
+<a class="reference external" href="http://localhost:8000/">localhost en el puerto 8000</a>.</p>
+</section>
+<section  id="copyright">
+<h2>Copyright</h2>
+<p>Licencia MIT. Ver fichero <code class="docutils literal notranslate"><span class="pre">LICENSE.txt</span></code>.</p>
+<p>Nekmo 2021.</p>
+</section>
+
+        </div>
+        <div class="line top"></div>
+        <div class="line bottom"></div>
+        <div class="line left"></div>
+        <div class="line right"></div>
+    </div>
+    
+    <script src="_static/revealjs4/dist/reveal.js"></script>
+    
+    
+      <script src="_static/revealjs4/plugin/notes/notes.js"></script>
+      <script src="_static/revealjs4/plugin/highlight/highlight.js"></script>
+      
+    
+    <script>
+        var revealjsConfig = new Object();
+        Object.assign(revealjsConfig, 
+    {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        margin: 0.2,        
+        transition: "slide",
+    }
+);
+        
+        
+        
+          revealjsConfig.plugins = [
+            RevealNotes,RevealHighlight,
+          ];
+        
+        // More info https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize(revealjsConfig);
+    </script>
+
+  </body>
+</html>
